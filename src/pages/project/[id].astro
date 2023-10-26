@@ -1,0 +1,33 @@
+---
+import Layout from "../../layouts/Layout.astro"
+import { getProjectById, getProjects } from "../../services/functions"
+
+const { id } = Astro.params
+
+console.log({id})
+
+let project
+
+if(id) project = getProjectById(id)
+
+console.log(project)
+
+
+---
+
+<Layout title={`Project ${id}`}>
+    <article class="flex gap-y-4 flex-col">
+        
+        <!-- <img 
+            class="w-52 h-auto"
+            src={project?.links?.patch.small} 
+            alt={project?.name}
+        > -->
+        <h2 class="text-4xl text-white font-bold">
+            #{project?.projectName}
+        </h2>
+        <p class="text-lg text-white">
+            {project?.details}
+        </p>
+    </article>
+</Layout>
