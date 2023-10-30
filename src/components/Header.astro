@@ -1,14 +1,25 @@
 ---
 import HeaderButton from "./HeaderButton.astro";
+let isModalOpen = false;
+
+function openModal() {
+  isModalOpen = true;
+}
+
+function closeModal() {
+  isModalOpen = false;
+}
 ---
 <header 
     class="w-full py-44 px-0 mx-auto max-w-100 lg:px-6 relative"
     style={`background-image: url('/static/SOFTCRE.png'); background-size: 100% auto; background-position: center; background-repeat: no-repeat;`}
 >
     <nav class="absolute py-30 top-0 left-0 right-0 flex justify-center w-full text-center md:flex-row mt-1">
-        <HeaderButton 
+        <HeaderButton
+            on:click={openModal} 
             class="text-white" 
-            href="/">
+            href="/"
+            >
             <svg 
                 slot="before" 
                 width="24" 
@@ -73,3 +84,10 @@ import HeaderButton from "./HeaderButton.astro";
         </HeaderButton>
     </nav>
 </header>
+
+<div class="modal-overlay">
+    <div class="modal">
+      <!-- Contenido del modal -->
+      <button onclick="closeModal()">Cerrar Modal</button>
+    </div>
+  </div>
